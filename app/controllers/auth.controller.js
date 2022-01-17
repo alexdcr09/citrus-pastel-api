@@ -10,7 +10,7 @@ var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
     // Save User to Database
-    if (req.body.role === "pro") {
+    if (req.body.offer === "pro") {
         User.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -24,11 +24,11 @@ exports.signup = (req, res) => {
             offer: req.body.offer,
         })
             .then(user => {
-                if (req.body.roles) {
+                if (req.body.offer) {
                     Role.findAll({
                         where: {
                             name: {
-                                [Op.or]: req.body.roles
+                                [Op.or]: req.body.offer
                             }
                         }
                     }).then(roles => {
@@ -55,12 +55,11 @@ exports.signup = (req, res) => {
             offer: req.body.offer,
         })
             .then(user => {
-                if (req.body.roles) {
+                console.log(user)
+                if (req.body.offer) {
                     Role.findAll({
                         where: {
-                            name: {
-                                [Op.or]: req.body.roles
-                            }
+                            name: req.body.offer
                         }
                     }).then(roles => {
                         user.setRoles(roles).then(() => {

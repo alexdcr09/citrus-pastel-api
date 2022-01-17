@@ -3,19 +3,12 @@ const cors = require("cors");
 
 const app = express();
 
-var corsOptions = {
-    origin: "http://localhost:3000"
-};
+app.use(cors());
 
 const db = require("./app/models");
 const Role = db.role;
 
-require('./app/routes/auth.routes')(app);
-
-db.sequelize.sync({force: true}).then(() => {
-    console.log('Drop and Resync Db');
-    initial();
-});
+db.sequelize.sync();
 
 function initial() {
     Role.create({
@@ -38,8 +31,6 @@ function initial() {
     });
 }
 
-app.use(cors(corsOptions));
-
 // parse requests of content-type - application/json
 app.use(express.json());
 
@@ -50,6 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to Citrus application." });
 });
+
+require('./app/routes/auth.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
