@@ -4,8 +4,39 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:3000"
 };
+
+const db = require("./app/models");
+const Role = db.role;
+
+require('./app/routes/auth.routes')(app);
+
+db.sequelize.sync({force: true}).then(() => {
+    console.log('Drop and Resync Db');
+    initial();
+});
+
+function initial() {
+    Role.create({
+        id: 1,
+        name: "free"
+    });
+
+    Role.create({
+        id: 2,
+        name: "basic"
+    });
+
+    Role.create({
+        id: 3,
+        name: "pro"
+    });
+    Role.create({
+        id: 4,
+        name: "expired"
+    });
+}
 
 app.use(cors(corsOptions));
 
