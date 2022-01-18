@@ -10,5 +10,9 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.TEXT,
             allowNull: false
         },
+        file: {
+            type: Sequelize.STRING,
+            allowNull: true
+        }
     });
 };
