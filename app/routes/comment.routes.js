@@ -12,5 +12,5 @@ module.exports = function (app) {
     app.post("/api/comments", controller.createComment);
     app.get("/api/comments/:id", controller.getCommentById);
     app.put("/api/comments/:id", controller.updateComment);
-    app.get("/api/comments/:patientId", controller.getAllCommentByPatient);
+    app.get("/api/comments/patients/:patientId", controller.getAllCommentByPatient);
 }

@@ -7,7 +7,7 @@ exports.getAllPatientByUser = (req, res) => {
             userId: req.params.userId
         }
     }).then(patients => {
-        if (!patients) {
+        if (patients.length === 0) {
             return res.status(404).send({ message: "Aucun patients trouvés."});
         }
 

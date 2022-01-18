@@ -7,8 +7,8 @@ exports.getAllCommentByPatient = (req, res) => {
             patientId: req.params.patientId
         }
     }).then(comments => {
-        if (!comments) {
-            return res.status(404).send({ message: "Aucun suivi trouvé."});
+        if (comments.length === 0) {
+            return res.status(404).send({ message: "Aucun suivi trouvé pour ce patient."});
         }
 
         return res.status(200).json(comments);
@@ -37,7 +37,8 @@ exports.createComment = (req, res) => {
     Comment.create({
         commentary: req.body.commentary,
         userId: req.body.userId,
-        patientId: req.body.patientId
+        patientId: req.body.patientId,
+        associationId: req.body.associationId
     }).then(comment => {
         res.status(201).send({ message: "Suivi créé avec succès!"});
     }).catch(err => {
