@@ -33,3 +33,20 @@ Route Association :
 
 <img width="1005" alt="Capture d’écran 2022-01-18 à 16 25 49" src="https://user-images.githubusercontent.com/35103078/149966578-4de44e3d-8839-4a31-89e4-be100c7dd9bb.png">
 
+
+Route Comment/Suivi :
+- Create Comment : POST http://localhost:8080/api/comments
+
+<img width="1004" alt="Capture d’écran 2022-01-18 à 16 55 45" src="https://user-images.githubusercontent.com/35103078/149972093-9ec74c0b-fe1f-4ef9-94a2-1dfe93ea07f8.png">
+
+
+- Get Comment By Id : GET http://localhost:8080/api/comments/:id
+
+
+- Get All Comment By Patient : GET http://localhost:8080/api/comments/patients/:id
+
+
+- Update Comment By Id : PUT http://localhost:8080/api/comments/:id
+
+<img width="1007" alt="Capture d’écran 2022-01-18 à 16 57 33" src="https://user-images.githubusercontent.com/35103078/149972427-3547883e-5e52-42f8-afab-3cc148eb9cea.png">
+
