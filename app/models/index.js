@@ -25,6 +25,9 @@ db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
+db.patient = require("../models/patient.model")(sequelize, Sequelize);
+db.association = require("../models/association.model")(sequelize, Sequelize);
+db.comment = require("../models/comment.model")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
     through: "user_roles",
@@ -36,6 +39,10 @@ db.user.belongsToMany(db.role, {
     foreignKey: "userId",
     otherKey: "roleId"
 });
+db.patient.belongsTo(db.user);
+db.comment.belongsTo(db.user);
+db.comment.belongsTo(db.patient);
+db.comment.belongsTo(db.association);
 
 db.ROLES = ["free", "basic", "pro", "expired"];
 
