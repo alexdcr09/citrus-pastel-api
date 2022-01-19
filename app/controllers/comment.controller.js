@@ -3,6 +3,8 @@ const Comment = db.comment;
 
 exports.getAllCommentByPatient = (req, res) => {
     Comment.findAll({
+        include: db.user
+    }, {
         where: {
             patientId: req.params.patientId
         }
