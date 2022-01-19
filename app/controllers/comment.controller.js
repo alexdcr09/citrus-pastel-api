@@ -19,10 +19,13 @@ exports.getAllCommentByPatient = (req, res) => {
 
 exports.getCommentById = (req, res) => {
     Comment.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(comment => {
+            include: db.user
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }).then(comment => {
         if (!comment) {
             return res.status(404).send({message: "Aucun suivi trouvé."});
         }
