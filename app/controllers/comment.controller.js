@@ -2,12 +2,13 @@ const db = require("../models");
 const Comment = db.comment;
 
 exports.getAllCommentByPatient = (req, res) => {
+    console.log(req.params.patientId);
     Comment.findAll({
-        include: db.user
-    }, {
         where: {
             patientId: req.params.patientId
         }
+    },{
+        include: db.user
     }).then(comments => {
         if (comments.length === 0) {
             return res.status(404).send({message: "Aucun suivi trouvé pour ce patient."});
