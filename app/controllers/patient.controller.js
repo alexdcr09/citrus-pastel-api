@@ -19,13 +19,8 @@ exports.getAllPatientByUser = (req, res) => {
 };
 
 exports.getPatientById = (req, res) => {
-    Patient.findOne({
+    Patient.findByPk(req.params.id, {
             include: db.user
-        },
-        {
-            where: {
-                id: req.params.id
-            }
         }).then(patient => {
         if (!patient) {
             return res.status(404).send({message: "Aucun patient trouvé."});
