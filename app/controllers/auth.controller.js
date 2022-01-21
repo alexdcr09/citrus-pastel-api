@@ -22,6 +22,7 @@ exports.signup = (req, res) => {
             phone: req.body.phone,
             requierement: req.body.requierement,
             offer: req.body.offer,
+            institutionId: 1
         })
             .then(user => {
                 if (req.body.offer) {
