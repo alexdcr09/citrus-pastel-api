@@ -6,8 +6,7 @@ exports.getAllCommentByPatient = (req, res) => {
     Comment.findAll({
         where: {
             patientId: req.params.patientId
-        }
-    },{
+        },
         include: db.user
     }).then(comments => {
         if (comments.length === 0) {
