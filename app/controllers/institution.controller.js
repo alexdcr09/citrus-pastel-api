@@ -1,6 +1,19 @@
 const db = require("../models");
 const Institution = db.institution;
 
+exports.getAllInstitutions = (req, res) => {
+    Institution.findAll()
+        .then(institutions => {
+            if (institutions.length === 0) {
+                return res.status(404).send({message: "Aucun établissement trouvé."});
+            }
+
+            return res.status(200).json(institutions);
+        }).catch(err => {
+        return res.status(500).send({message: err.message});
+    });
+};
+
 exports.createInstitution = (req, res) => {
     Institution.create({
         name: req.body.name,

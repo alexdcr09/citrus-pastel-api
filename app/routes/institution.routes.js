@@ -10,5 +10,6 @@ module.exports = function (app) {
     });
 
     app.post("/api/institution", controller.createInstitution);
+    app.get("/api/institution", controller.getAllInstitutions);
     app.put("/api/institution/:id", controller.updateInstitution);
 }

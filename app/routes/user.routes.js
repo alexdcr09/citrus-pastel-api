@@ -10,4 +10,5 @@ module.exports = function (app) {
     });
 
     app.get("/api/institution/:institutionId", controller.getUserByInstitution);
+    app.get("/api/users", controller.getUsers);
 }
