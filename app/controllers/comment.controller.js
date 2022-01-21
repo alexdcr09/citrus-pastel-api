@@ -6,7 +6,7 @@ exports.getAllCommentByPatient = (req, res) => {
         where: {
             patientId: req.params.patientId
         },
-        include: [{model: db.user}, {model: db.association}],
+        include: [{model: db.user}, {model: db.association}, {model: db.activity}],
         order: [
             ['id', 'DESC'],
         ]
@@ -46,7 +46,8 @@ exports.createComment = (req, res) => {
         title: req.body.title,
         userId: req.body.userId,
         patientId: req.body.patientId,
-        associationId: req.body.associationId
+        associationId: req.body.associationId,
+        activityId: req.body.activityId
     }).then(comment => {
         res.status(201).send({message: "Suivi créé avec succès!"});
     }).catch(err => {

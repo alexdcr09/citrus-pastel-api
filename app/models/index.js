@@ -47,6 +47,7 @@ db.patient.belongsTo(db.user);
 db.comment.belongsTo(db.user);
 db.comment.belongsTo(db.patient);
 db.comment.belongsTo(db.association);
+db.comment.belongsTo(db.activity);
 db.activity.belongsTo(db.association);
 
 db.ROLES = ["free", "basic", "pro", "expired"];
