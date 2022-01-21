@@ -7,7 +7,7 @@ exports.getAllCommentByPatient = (req, res) => {
         where: {
             patientId: req.params.patientId
         },
-        include: db.user
+        include: [{ model: db.user}, { model: db.association}]
     }).then(comments => {
         if (comments.length === 0) {
             return res.status(404).send({message: "Aucun suivi trouvé pour ce patient."});
